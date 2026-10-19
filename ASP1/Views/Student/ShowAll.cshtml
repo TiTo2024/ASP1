@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ASP1.Models.Student>
+
+@{
+    ViewData["Title"] = "All Students";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>All Students</h2>
+    </div>
+
+    <table class="table table-striped table-hover table-bordered shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.Id</td>
+                        <td>@student.Name</td>
+                        <td>@student.Age</td>
+                        <td>@(student.Department?.Name ?? "N/A")</td>
+                        <td>
+                            <a asp-controller="Student" asp-action="ShowDetails" asp-route-id="@student.Id" class="btn btn-info btn-sm text-white">Details</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center text-muted">No students found in the database.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
