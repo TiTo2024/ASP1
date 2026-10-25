@@ -1,0 +1,39 @@
+﻿@model ASP1.ViewModels.DepartmentDetailsViewModel
+
+@{
+    ViewData["Title"] = "Department Report";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h3 class="mb-0">Report for Department: @Model.DepartmentName</h3>
+        </div>
+        <div class="card-body">
+            <p class="fs-5">
+                <strong>Department State: </strong>
+                <span class="badge @(Model.DepartmentState == "Main" ? "bg-primary" : "bg-secondary")">
+                    @Model.DepartmentState
+                </span>
+                <small class="text-muted d-block mt-1">("Main" if students > 50, "Branch" if students < 50)</small>
+            </p>
+
+            <hr />
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Students (Age > 25):</label>
+                @if (Model.StudentsOver25List != null && Model.StudentsOver25List.Any())
+                {
+                    @Html.DropDownList("SelectedStudentId", Model.StudentsOver25List, "-- Select Student Over 25 --", new { @class = "form-select" })
+                }
+                else
+                {
+                    <div class="alert alert-warning">No students over 25 years old found in this department.</div>
+                }
+            </div>
+        </div>
+        <div class="card-footer">
+            <a asp-action="ShowAll" class="btn btn-secondary">Back to Departments</a>
+        </div>
+    </div>
+</div>
