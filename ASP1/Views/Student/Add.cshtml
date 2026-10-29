@@ -1,0 +1,27 @@
+﻿@model ASP1.Models.Student
+
+@{
+    ViewData["Title"] = "Add Student";
+}
+
+<div class="container mt-4">
+    <h2>Add New Student</h2>
+    <form asp-action="Add" method="post" class="mt-3">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Student Name</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Age" class="form-label">Age</label>
+            <input asp-for="Age" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="DepartmentId" class="form-label">Department</label>
+            <select asp-for="DepartmentId" asp-items="ViewBag.Departments" class="form-select">
+                <option value="">-- Select Department --</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a asp-action="ShowAll" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
